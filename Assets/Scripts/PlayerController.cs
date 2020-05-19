@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     float horizontalThrow;
     float verticalThrow;
 
+    bool stopped = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +27,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        verticalThrow = CrossPlatformInputManager.GetAxis("Vertical");
-        ProcessTranslation();
-        ProcessRotation();
+        if (!stopped)
+        {
+            horizontalThrow = CrossPlatformInputManager.GetAxis("Horizontal");
+            verticalThrow = CrossPlatformInputManager.GetAxis("Vertical");
+            ProcessTranslation();
+            ProcessRotation();
+        }
     }
 
     void ProcessTranslation()
@@ -54,7 +59,11 @@ public class PlayerController : MonoBehaviour
         float roll = horizontalThrow * controlRollFactor;
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
-        
-
 	}
+
+    void Stop()
+    {
+        print("stopped");
+        stopped = true;
+    }
 }
