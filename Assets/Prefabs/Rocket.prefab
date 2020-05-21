@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 362866133}
   - component: {fileID: 362866135}
   - component: {fileID: 5820812763570411944}
-  - component: {fileID: 5706914630531202349}
   - component: {fileID: 6418263493841253367}
   m_Layer: 0
   m_Name: Rocket
@@ -135,6 +134,7 @@ MonoBehaviour:
   controlPitchFactor: -20
   positionYawFactor: 5
   controlRollFactor: -20
+  guns: []
 --- !u!65 &5820812763570411944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -148,25 +148,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5271392, y: 0.79238474, z: 3.2506356}
   m_Center: {x: -0.00000011920929, y: 0.000000074505806, z: 0}
---- !u!114 &5706914630531202349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2664854266093836275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ecce65311568413db4ced512b4cf38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  maxXRange: 10
-  maxYRange: 10
-  positionPitchFactor: -5
-  controlPitchFactor: -20
-  positionYawFactor: 5
-  controlRollFactor: -20
 --- !u!114 &6418263493841253367
 MonoBehaviour:
   m_ObjectHideFlags: 0

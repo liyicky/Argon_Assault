@@ -18,10 +18,14 @@ public class PlayerController : MonoBehaviour
 
     bool stopped = false;
 
+    Scoreboard scoreboard;
+    [SerializeField] ParticleSystem[] guns; 
+
     // Start is called before the first frame update
     void Start()
     {
         print("start");
+        scoreboard = FindObjectOfType<Scoreboard>();
     }
 
     // Update is called once per frame
@@ -33,7 +37,10 @@ public class PlayerController : MonoBehaviour
             verticalThrow = CrossPlatformInputManager.GetAxis("Vertical");
             ProcessTranslation();
             ProcessRotation();
+            ProcessFiring();
         }
+
+        scoreboard.AddToScore(1);
     }
 
     void ProcessTranslation()
@@ -60,6 +67,41 @@ public class PlayerController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
 	}
+
+    void ProcessFiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire"))
+        {
+            ActivateGuns();
+        }
+        else
+        {
+            DeativateGuns();
+        }
+    }
+
+    void ActivateGuns()
+    {
+        foreach (ParticleSystem gun in guns)
+        {
+            if (!gun.isPlaying)
+            {
+                gun.Play();
+                print("firing");
+            }
+        }
+    }
+
+    void DeativateGuns()
+    {
+        foreach (ParticleSystem gun in guns)
+        {
+            if (gun.isPlaying)
+            {
+                gun.Stop();
+            }
+        }
+    }
 
     void Stop()
     {
