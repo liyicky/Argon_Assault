@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] GameObject explosion;
+    [SerializeField] int hits = 5;
 
     Scoreboard scoreboard;
     // Start is called before the first frame update
@@ -16,17 +17,20 @@ public class Enemy : MonoBehaviour
         scoreboard = FindObjectOfType<Scoreboard>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnParticleCollision(GameObject other)
     {
-        print("Particles collided with enemy " + other.name);
-        Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        HandleDamage();
         scoreboard.ScoreHit();
+    }
+
+    private void HandleDamage()
+    {
+        hits--;
+
+        if (hits <= 0)
+        {
+            Destroy(gameObject);
+            Instantiate(explosion, transform.position, Quaternion.identity);
+        }
     }
 }
